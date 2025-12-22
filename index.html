@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Restaurante Chino — Menú</title>
+  <meta name="description" content="Menú móvil de restaurante chino en España: fideos, dumplings, xiaolongbao, bebidas y platos fríos." />
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#121824;
+      --text:#f4f6fb;
+      --muted:#b7c0d1;
+      --line:rgba(255,255,255,.10);
+      --accent:#ffcc66;
+      --accent2:#7dd3fc;
+      --danger:#ff6b6b;
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "PingFang SC","Microsoft YaHei", sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(255,204,102,.20), transparent 55%),
+                  radial-gradient(900px 500px at 110% 10%, rgba(125,211,252,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit}
+    .wrap{max-width:980px;margin:0 auto;padding:14px 14px 92px}
+    header.hero{
+      background: linear-gradient(135deg, rgba(255,204,102,.12), rgba(125,211,252,.10));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+    }
+    .heroTop{
+      display:flex; gap:14px; align-items:stretch;
+      padding:14px;
+    }
+    .heroImg{
+      flex:0 0 42%;
+      border-radius: 16px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#0f1520;
+      min-height:130px;
+      position:relative;
+    }
+    .heroImg img{
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
+    .heroText{flex:1; display:flex; flex-direction:column; justify-content:center}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      color:var(--muted);
+      width:fit-content;
+      font-size:12px;
+    }
+    h1{margin:10px 0 6px;font-size:20px;letter-spacing:.2px}
+    .sub{margin:0;color:var(--muted);line-height:1.5;font-size:13px}
+    .infoRow{
+      display:flex; flex-wrap:wrap; gap:10px;
+      padding:0 14px 14px;
+    }
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    /* category nav */
+    .catNav{
+      position:sticky; top:0; z-index:10;
+      margin-top:12px;
+      padding:10px 0 8px;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,15,20,.85), rgba(11,15,20,.55));
+    }
+    .chipRow{
+      display:flex; gap:8px; overflow:auto; padding:2px 2px 8px;
+      scroll-snap-type:x mandatory;
+    }
+    .chip{
+      scroll-snap-align:start;
+      flex:0 0 auto;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color:var(--text);
+      font-size:13px;
+      text-decoration:none;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      white-space:nowrap;
+    }
+    .chip small{color:var(--muted);font-size:12px}
+
+    /* sections */
+    .section{
+      margin-top:12px;
+      border:1px solid var(--line);
+      background: rgba(18,24,36,.72);
+      border-radius: var(--radius);
+      overflow:hidden;
+    }
+    .secHead{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:14px;
+    }
+    .secTitle{
+      display:flex; flex-direction:column; gap:4px;
+    }
+    .secTitle b{font-size:16px}
+    .secTitle span{font-size:12px;color:var(--muted)}
+    .toggle{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:13px;
+      cursor:pointer;
+    }
+    .items{border-top:1px solid var(--line)}
+    .item{
+      padding:12px 14px;
+      display:flex; justify-content:space-between; gap:12px;
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+    .item:first-child{border-top:none}
+    .left{min-width:0}
+    .name{
+      font-size:14px;
+      display:flex; gap:8px; align-items:center;
+    }
+    .tag{
+      font-size:11px;
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,204,102,.10);
+      color: var(--accent);
+      flex:0 0 auto;
+    }
+    .desc{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.5}
+    .price{flex:0 0 auto; font-variant-numeric: tabular-nums; color:var(--accent2); font-weight:600}
+    .hint{margin:12px 2px 0;color:var(--muted);font-size:12px;line-height:1.6}
+
+    /* floating actions */
+    .fabBar{
+      position:fixed; left:0; right:0; bottom:0;
+      padding:10px 12px;
+      background: linear-gradient(to top, rgba(11,15,20,.95), rgba(11,15,20,.55));
+      border-top:1px solid var(--line);
+      display:flex; gap:10px; justify-content:center;
+      z-index:20;
+    }
+    .fab{
+      flex:1;
+      max-width:520px;
+      display:flex; gap:10px;
+    }
+    .btn{
+      flex:1;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      text-decoration:none;
+      text-align:center;
+      font-weight:600;
+      font-size:14px;
+    }
+    .btn.primary{
+      background: rgba(125,211,252,.16);
+      border-color: rgba(125,211,252,.35);
+    }
+    .btn.danger{
+      background: rgba(255,107,107,.14);
+      border-color: rgba(255,107,107,.30);
+    }
+
+    /* collapsed */
+    .collapsed .items{display:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero" id="top">
+      <div class="heroTop">
+        <div class="heroImg" aria-hidden="true">
+          <!-- 换成你自己的图片 -->
+          <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=900&q=70" alt="Comida china" />
+        </div>
+        <div class="heroText">
+          <div class="badge">🇪🇸 España · 🇨🇳 Cocina China</div>
+          <h1>Restaurante Chino — Menú</h1>
+          <p class="sub">Página móvil para ver el menú rápidamente. Toca una categoría y listo.</p>
+        </div>
+      </div>
+      <div class="infoRow">
+        <div class="pill">📍 Tu ciudad, España</div>
+        <div class="pill">🕒 Mar–Dom 12:00–23:00</div>
+        <div class="pill">🥟 Especialidad: dumplings & fideos</div>
+      </div>
+    </header>
+
+    <div class="catNav" aria-label="Categorías">
+      <div class="chipRow" id="chipRow"></div>
+    </div>
+
+    <div id="sections"></div>
+
+    <p class="hint">
+      备注：价格与名称都可以在代码里直接改（看下面 JS 的 <code>menu</code> 数据）。
+      如果你想加“过敏原/辣度/图片”，我也可以把结构扩展进去。
+    </p>
+  </div>
+
+  <div class="fabBar">
+    <div class="fab">
+      <!-- 改成你的电话 -->
+      <a class="btn danger" href="tel:+34123456789">📞 Llamar</a>
+      <!-- 改成你的WhatsApp -->
+      <a class="btn primary" href="https://wa.me/34123456789?text=Hola%2C%20quiero%20hacer%20un%20pedido." target="_blank" rel="noopener">💬 WhatsApp</a>
+    </div>
+  </div>
+
+  <script>
+    // ===== 菜单数据：你只需要改这里的名字/描述/价格即可 =====
+    const menu = [
+      {
+        id: "noodles",
+        title: "面类 (8)",
+        subtitle: "Fideos — 8 opciones",
+        items: [
+          { name: "Fideos con ternera", desc: "Caldo suave, cebolleta y verduras.", price: "9,50€", tag:"Popular" },
+          { name: "Fideos con pollo", desc: "Sabor ligero, ideal para diario.", price: "9,00€" },
+          { name: "Fideos con cerdo", desc: "Aromático y jugoso.", price: "9,20€" },
+          { name: "Fideos con marisco", desc: "Gambas y toque de jengibre.", price: "10,80€", tag:"Recomendado" },
+          { name: "Fideos vegetarianos", desc: "Verduras de temporada.", price: "8,80€" },
+          { name: "Fideos picantes", desc: "Nivel picante medio (ajustable).", price: "9,30€", tag:"Picante" },
+          { name: "Fideos estilo Sichuan", desc: "Más aroma y especias.", price: "9,80€", tag:"Picante" },
+          { name: "Fideos con pato", desc: "Sabor intenso y delicioso.", price: "11,20€" },
+        ]
+      },
+      {
+        id: "chowmein",
+        title: "炒面 (4)",
+        subtitle: "Chow Mein — 4 opciones",
+        items: [
+          { name: "Chow Mein mixto", desc: "Pollo + ternera + verduras.", price: "10,50€", tag:"Popular" },
+          { name: "Chow Mein con pollo", desc: "Wok, salsa ligera.", price: "9,80€" },
+          { name: "Chow Mein con ternera", desc: "Wok, toque de soja.", price: "10,20€" },
+          { name: "Chow Mein vegetariano", desc: "Verduras y setas.", price: "9,20€" },
+        ]
+      },
+      {
+        id: "xlb",
+        title: "小笼包 (2)",
+        subtitle: "Xiaolongbao — 2 opciones",
+        items: [
+          { name: "Xiaolongbao de cerdo (6u)", desc: "Caldo dentro, piel fina.", price: "7,80€", tag:"Top" },
+          { name: "Xiaolongbao mixto (6u)", desc: "Cerdo + gambas.", price: "8,80€" },
+        ]
+      },
+      {
+        id: "wonton",
+        title: "馄饨 (1)",
+        subtitle: "Wonton — 1 opción",
+        items: [
+          { name: "Sopa de wonton", desc: "Caldo casero, wonton tierno.", price: "8,20€" },
+        ]
+      },
+      {
+        id: "youpodumplings",
+        title: "油泼饺子 (3)",
+        subtitle: "Dumplings con aceite picante — 3 opciones",
+        items: [
+          { name: "Aceite picante · cerdo (8u)", desc: "Salsa aromática tipo chili oil.", price: "9,20€", tag:"Picante" },
+          { name: "Aceite picante · pollo (8u)", desc: "Ligero y fragante.", price: "9,00€", tag:"Picante" },
+          { name: "Aceite picante · veg (8u)", desc: "Verduras, sin carne.", price: "8,80€", tag:"Picante" },
+        ]
+      },
+      {
+        id: "panfried",
+        title: "煎饺 (3)",
+        subtitle: "Gyozas a la plancha — 3 opciones",
+        items: [
+          { name: "Gyozas cerdo (8u)", desc: "Base crujiente, jugosas.", price: "8,80€", tag:"Popular" },
+          { name: "Gyozas pollo (8u)", desc: "Suaves, buen equilibrio.", price: "8,60€" },
+          { name: "Gyozas vegetales (8u)", desc: "Verduras y setas.", price: "8,40€" },
+        ]
+      },
+      {
+        id: "guaBao",
+        title: "刮包 (3)",
+        subtitle: "Gua Bao — 3 opciones",
+        items: [
+          { name: "Gua Bao de cerdo", desc: "Pancito al vapor, encurtidos.", price: "6,80€", tag:"Recomendado" },
+          { name: "Gua Bao de pollo", desc: "Salsa ligera y verduras.", price: "6,60€" },
+          { name: "Gua Bao vegetariano", desc: "Tofu y verduras.", price: "6,40€" },
+        ]
+      },
+      {
+        id: "drinks",
+        title: "饮料 (10)",
+        subtitle: "Bebidas — 10 opciones",
+        items: [
+          { name: "Agua", desc: "", price: "1,80€" },
+          { name: "Agua con gas", desc: "", price: "2,10€" },
+          { name: "Cola", desc: "", price: "2,50€" },
+          { name: "Cola Zero", desc: "", price: "2,50€" },
+          { name: "Fanta naranja", desc: "", price: "2,50€" },
+          { name: "Sprite / Limón", desc: "", price: "2,50€" },
+          { name: "Té verde", desc: "Frío o caliente.", price: "2,80€" },
+          { name: "Té de jazmín", desc: "Aroma floral.", price: "2,80€" },
+          { name: "Zumo", desc: "Según disponibilidad.", price: "2,90€" },
+          { name: "Cerveza sin alcohol", desc: "", price: "3,00€" },
+        ]
+      },
+      {
+        id: "sides",
+        title: "小菜 (14)",
+        subtitle: "Entrantes / platos fríos — 14 opciones",
+        items: [
+          { name: "Pepino aliñado", desc: "Refrescante, ajo suave.", price: "4,50€" },
+          { name: "Ensalada de algas", desc: "", price: "4,80€" },
+          { name: "Edamame", desc: "Sal marina.", price: "4,30€" },
+          { name: "Kimchi", desc: "Picante (medio).", price: "4,80€", tag:"Picante" },
+          { name: "Tofu frío", desc: "Salsa ligera.", price: "4,60€" },
+          { name: "Cacahuetes especiados", desc: "", price: "3,80€" },
+          { name: "Encurtidos mixtos", desc: "", price: "4,20€" },
+          { name: "Pollo desmenuzado frío", desc: "Toque de sésamo.", price: "5,60€" },
+          { name: "Ternera fría", desc: "Aromática.", price: "6,20€" },
+          { name: "Ensalada de col", desc: "", price: "4,10€" },
+          { name: "Rollitos primavera (2u)", desc: "Crujientes.", price: "4,80€" },
+          { name: "Patatas picantes", desc: "Tipo Sichuan.", price: "4,90€", tag:"Picante" },
+          { name: "Setas aliñadas", desc: "", price: "4,90€" },
+          { name: "Berenjena fría", desc: "Ajo y salsa.", price: "5,20€" },
+        ]
+      }
+    ];
+
+    // ===== 渲染 =====
+    const chipRow = document.getElementById("chipRow");
+    const sections = document.getElementById("sections");
+
+    function makeEl(tag, attrs={}, children=[]){
+      const el = document.createElement(tag);
+      for (const [k,v] of Object.entries(attrs)){
+        if (k === "class") el.className = v;
+        else if (k === "html") el.innerHTML = v;
+        else el.setAttribute(k, v);
+      }
+      children.forEach(c => el.appendChild(c));
+      return el;
+    }
+
+    // chips
+    menu.forEach(cat => {
+      const a = makeEl("a", { class:"chip", href:`#${cat.id}` });
+      a.innerHTML = `${cat.title} <small>${cat.items.length}项</small>`;
+      chipRow.appendChild(a);
+    });
+
+    // sections
+    menu.forEach(cat => {
+      const sec = makeEl("section", { class:"section", id:cat.id });
+      const head = makeEl("div", { class:"secHead" });
+
+      const title = makeEl("div", { class:"secTitle" });
+      title.appendChild(makeEl("b", { html: cat.title }));
+      title.appendChild(makeEl("span", { html: cat.subtitle }));
+
+      const btn = makeEl("button", { class:"toggle", type:"button" });
+      btn.textContent = "收起/展开";
+      btn.addEventListener("click", () => sec.classList.toggle("collapsed"));
+
+      head.appendChild(title);
+      head.appendChild(btn);
+
+      const itemsWrap = makeEl("div", { class:"items" });
+
+      cat.items.forEach(it => {
+        const row = makeEl("div", { class:"item" });
+
+        const left = makeEl("div", { class:"left" });
+        const name = makeEl("div", { class:"name" });
+        name.appendChild(makeEl("span", { html: it.name }));
+        if (it.tag) name.appendChild(makeEl("span", { class:"tag", html: it.tag }));
+        left.appendChild(name);
+        if (it.desc) left.appendChild(makeEl("div", { class:"desc", html: it.desc }));
+
+        const price = makeEl("div", { class:"price", html: it.price });
+
+        row.appendChild(left);
+        row.appendChild(price);
+        itemsWrap.appendChild(row);
+      });
+
+      sec.appendChild(head);
+      sec.appendChild(itemsWrap);
+      sections.appendChild(sec);
+    });
+
+    // smooth scroll
+    document.documentElement.style.scrollBehavior = "smooth";
+  </script>
+</body>
+</html>
