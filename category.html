@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>分类详情 · Category</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="back" href="index.html" aria-label="返回首页">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="cn-text">返回首页</span>
+        <span class="es-text">Inicio</span>
+        <span class="en-text">Home</span>
+      </a>
+
+      <div style="text-align:right">
+        <p class="title" id="pageTitle">分类详情</p>
+        <p class="subtitle" id="pageSub">Category details</p>
+
+        <div class="langbar" style="justify-content:flex-end">
+          <button class="langbtn" type="button" data-set-lang="cn">中文</button>
+          <button class="langbtn" type="button" data-set-lang="es">ES</button>
+          <button class="langbtn" type="button" data-set-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 只保留右侧列表卡片 -->
+    <section class="rightCard">
+      <div class="rightHead">
+        <p class="h cn-text">菜品介绍与价格</p>
+        <p class="h es-text">Platos y precios</p>
+        <p class="h en-text">Dishes & Prices</p>
+      </div>
+
+      <div class="list" id="list"></div>
+    </section>
+  </div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/category.js"></script>
+</body>
+</html>

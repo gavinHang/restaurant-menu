@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>
+  <span class="cn-text">首页 · 菜单</span>
+  <span class="es-text">Inicio · Menú</span>
+  <span class="en-text">Home · Menu</span>
+</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1 class="cn-text">长安忆</h1>
+        <h1 class="es-text">ChangAnYi</h1>
+        <h1 class="en-text">ChangAnYi</h1>
+        <p class="cn-text">选择一个菜品分类开始点餐</p>
+        <p class="es-text">Elige una categoría para empezar</p>
+        <p class="en-text">Tap a category to view dishes</p>
+      </div>
+
+      <div class="langbar" aria-label="Language switch">
+        <button class="langbtn" type="button" data-set-lang="cn">中文</button>
+        <button class="langbtn" type="button" data-set-lang="es">ES</button>
+         <button class="langbtn" type="button" data-set-lang="en">EN</button>
+      </div>
+    </header>
+
+    <!-- 轮播图 -->
+    <section class="carousel" aria-label="首页轮播">
+      <div class="slides" id="slides">
+  <div class="slide">
+    <img src="images/slider1.jpg" alt="招牌菜展示 1">
+    <div class="caption">
+      <p class="t cn-text">招牌推荐</p>
+      <p class="t es-text">Recomendado</p>
+      <p class="t en-text">Chef's Recommendation</p>
+      <p class="s cn-text">每日精选</p>
+      <p class="s es-text">Selección del día</p>
+      <p class="s en-text">Daily Selection</p>
+    </div>
+  </div>
+  <div class="slide">
+    <img src="images/slider2.jpg" alt="招牌菜展示 2">
+    <div class="caption">
+      <p class="t cn-text">现做热食</p>
+      <p class="t es-text">Recién hecho</p>
+      <p class="t en-text">Freshly Made</p>
+      <p class="s cn-text">热腾腾上桌</p>
+      <p class="s es-text">Servido caliente</p>
+      <p class="s en-text">Served Hot</p>
+    </div>
+  </div>
+  <div class="slide">
+    <img src="images/slider3.jpg" alt="招牌菜展示 3">
+    <div class="caption">
+      <p class="t cn-text">经典风味</p>
+      <p class="t es-text">Sabor clásico</p>
+      <p class="t en-text">Classic Flavors</p>
+      <p class="s cn-text">中式家常</p>
+      <p class="s es-text">Estilo casero</p>
+      <p class="s en-text">Home-Style Chinese</p>
+    </div>
+  </div>
+</div>
+
+      <button class="navBtn prev" id="prev" aria-label="上一张">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="navBtn next" id="next" aria-label="下一张">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="dots" id="dots" aria-label="轮播分页"></div>
+    </section>
+
+    <h2 class="cn-text">菜品分类</h2>
+    <h2 class="es-text">Productos</h2>
+    <h2 class="en-text">Products</h2>
+
+    <!-- 分类卡片：跳 category.html?cat=xxx -->
+    <section class="grid" aria-label="菜品分类">
+      <a class="card" href="category.html?cat=entrantes">
+  <div class="thumb"><img src="images/cat-entrantes.jpg" alt="小菜 Entrantes - Appetizers"></div>
+  <div class="meta">
+    <div>
+      <p class="name cn-text">小菜</p>
+      <p class="name es-text">Entrantes</p>
+      <p class="name en-text">Appetizers</p>
+      <p class="sub">ENTRANTES</p>
+    </div>
+    <div class="pill cn-text">查看详情</div>
+    <div class="pill es-text">Ver</div>
+    <div class="pill en-text">View Details</div>
+  </div>
+</a>
+
+<a class="card" href="category.html?cat=arroz">
+  <div class="thumb"><img src="images/cat-arroz.jpg" alt="饭类 Arroz - Rice Dishes"></div>
+  <div class="meta">
+    <div>
+      <p class="name cn-text">饭类</p>
+      <p class="name es-text">Arroz</p>
+      <p class="name en-text">Rice Dishes</p>
+      <p class="sub">ARROZ</p>
+    </div>
+    <div class="pill cn-text">查看详情</div>
+    <div class="pill es-text">Ver</div>
+    <div class="pill en-text">View Details</div>
+  </div>
+</a>
+
+<a class="card" href="category.html?cat=fideos">
+  <div class="thumb"><img src="images/cat-fideos.jpg" alt="面类 Fideos y Ramen - Noodles & Ramen"></div>
+  <div class="meta">
+    <div>
+      <p class="name cn-text">面类</p>
+      <p class="name es-text">Fideos</p>
+      <p class="name en-text">Noodles & Ramen</p>
+      <p class="sub">FIDEOS & RAMEN</p>
+    </div>
+    <div class="pill cn-text">查看详情</div>
+    <div class="pill es-text">Ver</div>
+    <div class="pill en-text">View Details</div>
+  </div>
+</a>
+
+<a class="card" href="category.html?cat=dimdum">
+  <div class="thumb"><img src="images/cat-dimdum.jpg" alt="炒面·小笼包·馄饨 Tallarines·Xiaolongbao·Wonton - Fried Noodles·Xiaolongbao·Wonton"></div>
+  <div class="meta">
+    <div>
+      <p class="name cn-text">炒面 · 小笼包 · 馄饨</p>
+      <p class="name es-text">Tallarines · Xiaolongbao · Wonton</p>
+      <p class="name en-text">Fried Noodles · Xiaolongbao · Wonton</p>
+      <p class="sub">TALLARINES · XIAOLONGBAO · WONTON</p>
+    </div>
+    <div class="pill cn-text">查看详情</div>
+    <div class="pill es-text">Ver</div>
+    <div class="pill en-text">View Details</div>
+  </div>
+</a>
+
+<a class="card" href="category.html?cat=gyoza">
+  <div class="thumb"><img src="images/cat-gyoza.jpg" alt="饺子·刮包 Gyozas·Bao - Dumplings·Bao Buns"></div>
+  <div class="meta">
+    <div>
+      <p class="name cn-text">饺子 · 刮包</p>
+      <p class="name es-text">Gyozas · Bao</p>
+      <p class="name en-text">Dumplings · Bao Buns</p>
+      <p class="sub">GYOZAS · BAO</p>
+    </div>
+    <div class="pill cn-text">查看详情</div>
+    <div class="pill es-text">Ver</div>
+    <div class="pill en-text">View Details</div>
+  </div>
+</a>
+
+<a class="card" href="category.html?cat=bebidas">
+  <div class="thumb"><img src="images/cat-bebidas.jpg" alt="饮料 Bebidas - Beverages"></div>
+  <div class="meta">
+    <div>
+      <p class="name cn-text">饮料</p>
+      <p class="name es-text">Bebidas</p>
+      <p class="name en-text">Beverages</p>
+      <p class="sub">BEBIDAS</p>
+    </div>
+    <div class="pill cn-text">查看详情</div>
+    <div class="pill es-text">Ver</div>
+    <div class="pill en-text">View Details</div>
+  </div>
+</a>
+    </section>
+
+    <footer>
+      © <span id="y"></span> 长安忆
+    </footer>
+  </div>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/index.js"></script>
+</body>
+</html>
